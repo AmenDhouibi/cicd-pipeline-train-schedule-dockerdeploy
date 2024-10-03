@@ -42,7 +42,7 @@ pipeline {
     steps {
         input 'Deploy to Production'
         milestone(1)
-        withCredentials ([usernamePassword(credentialsId: 'production_ip', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+        withCredentials ([usernamePassword(credentialsId: 'production_id', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
             script {
                 sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@${env.prod_ip} \"docker pull amendhouibi22/train-schedule:${env.BUILD_NUMBER}\""
                 try {
